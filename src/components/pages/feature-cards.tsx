@@ -1,9 +1,9 @@
 import HeadingText from "@/components/heading-text";
-import { featureCards } from "@/config/contents";
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { featureCards } from "@/config/contents";
 
-export default function FeatureCards() {
+function FeatureCards() {
   return (
     <section className="bg-slate-50 dark:bg-slate-900">
       <div className="container space-y-8 py-12 text-center lg:py-20">
@@ -14,7 +14,7 @@ export default function FeatureCards() {
         ) : null}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {featureCards.content.map((cards) => {
-            const Icon = Icons[cards.icon || "blank"];
+            const Icon = Icons[cards.icon ?? "blank"];
 
             return (
               <Card
@@ -22,7 +22,7 @@ export default function FeatureCards() {
                 className="flex flex-grow flex-col items-center justify-between gap-4 p-8 dark:bg-secondary"
               >
                 <div className="flex">
-                  <Icon className="h-[6rem] w-[6rem]" />
+                  <Icon className="z-0 h-[6rem] w-[6rem]" />
                 </div>
                 <div className="space-y-2">
                   <CardTitle>{cards.text}</CardTitle>
@@ -36,3 +36,5 @@ export default function FeatureCards() {
     </section>
   );
 }
+
+export default FeatureCards;

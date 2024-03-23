@@ -1,6 +1,6 @@
-import Hero from "@/components/pages/hero";
 import FeatureCards from "@/components/pages/feature-cards";
 import Features from "@/components/pages/features";
+import Hero from "@/components/pages/hero";
 
 export default function HomePage() {
   return (

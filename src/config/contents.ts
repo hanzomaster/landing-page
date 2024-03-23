@@ -1,4 +1,4 @@
-import { HeroHeader, ContentSection } from "@/types/contents"
+import { type ContentSection, type HeroHeader } from "@/types/contents";
 
 /* ====================
 [> CUSTOMIZING CONTENT <]
@@ -8,14 +8,14 @@ import { HeroHeader, ContentSection } from "@/types/contents"
  ==================== */
 
 export const heroHeader: HeroHeader = {
-  header: `Landing pages made easy`,
-  subheader: `Easy to setup. Customizable. Quick. Responsive.`,
+  header: `Welcome to hChip`,
+  subheader: `hChip is a food delivery service that delivers food to your doorstep.`,
   image: `/hero-img.webp`,
-}
+};
 
 export const featureCards: ContentSection = {
   header: `Powered by`,
-  subheader: `What makes Next Landing possible`,
+  subheader: `What makes hChip possible`,
   content: [
     {
       text: `Next.js`,
@@ -28,12 +28,12 @@ export const featureCards: ContentSection = {
       icon: "shadcnUi",
     },
     {
-      text: `Vercel`,
+      text: `Mr. Manh`,
       subtext: `Develop. Preview. Ship.`,
       icon: "vercel",
     },
   ],
-}
+};
 
 export const features: ContentSection = {
   header: `Features`,
@@ -51,9 +51,9 @@ export const features: ContentSection = {
       icon: "barChart",
     },
     {
-      text: `Easy Customizability`,
+      text: `Easy Customizable`,
       subtext: `Change your content and layout with little effort`,
       icon: "settings",
     },
   ],
-}
+};

@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import { settings } from "@/config/settings";
 import { siteConfig } from "@/config/site";
 import { navLinks } from "@/lib/links";
-import { settings } from "@/config/settings";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Profile from "../profile";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -23,7 +24,7 @@ export default function Navbar() {
   }, [navbar]);
 
   return (
-    <header className="select-none">
+    <header className="sticky top-0 z-20 select-none bg-background/90 backdrop-blur">
       <nav className="mx-auto justify-between px-4 md:flex md:items-center md:px-8 lg:max-w-7xl">
         <div>
           <div className="flex items-center justify-between py-3 md:block md:py-5">
@@ -68,37 +69,40 @@ export default function Navbar() {
                   </svg>
                 )}
               </button>
-              <ModeToggle />
+              <div className="mt-[0.125rem] ">
+                <ModeToggle />
+              </div>
             </div>
           </div>
         </div>
-        <div>
-          <div
-            className={`absolute left-0 right-0 z-10 m-auto justify-self-center rounded-md border bg-background p-4 md:static md:mt-0 md:block md:border-none md:p-0 ${
-              navbar ? "block" : "hidden"
-            }`}
-            style={{ width: "100%", maxWidth: "20rem" }}
-          >
-            <ul className="flex flex-col items-center space-y-4 text-primary opacity-60 md:flex-row md:space-x-6 md:space-y-0">
-              {navLinks.map((link) => (
-                <li key={link.route}>
-                  <Link
-                    className="hover:underline"
-                    href={link.path}
-                    onClick={handleClick}
-                  >
-                    {link.route}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div
+          className={`absolute left-0 right-0 z-10 m-auto justify-self-center rounded-md border p-4 md:static md:block md:items-center md:border-none md:p-0 ${
+            navbar ? "block bg-background" : "hidden"
+          }`}
+          style={{ width: "100%", maxWidth: "20rem" }}
+        >
+          <ul className="flex flex-col items-center justify-between space-y-4 text-primary opacity-60 md:flex-row md:space-x-6 md:space-y-0">
+            {navLinks.map((link) => (
+              <li key={link.route}>
+                <Link
+                  className="hover:underline"
+                  href={link.path}
+                  onClick={handleClick}
+                >
+                  {link.route}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        {settings.themeToggleEnabled && (
-          <div className="hidden md:block">
-            <ModeToggle />
-          </div>
-        )}
+        <div className="flex gap-4">
+          {settings.themeToggleEnabled && (
+            <div className="mt-[0.125rem] hidden md:block">
+              <ModeToggle />
+            </div>
+          )}
+          <Profile />
+        </div>
       </nav>
     </header>
   );

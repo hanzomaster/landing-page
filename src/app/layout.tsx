@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { type ReactNode } from "react";
+import ScrollToTopButton from "@/components/scroll-to-top";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export const metadata = {
   creator: siteConfig.author,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "vi_VN",
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
@@ -55,7 +56,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Footer />
           </ThemeProvider>
         )}
+        <ScrollToTopButton />
       </body>
     </html>
   );

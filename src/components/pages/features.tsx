@@ -2,7 +2,7 @@ import HeadingText from "@/components/heading-text";
 import { features } from "@/config/contents";
 import { Icons } from "@/components/icons";
 
-export default function Features() {
+function Features() {
   return (
     <section className="container space-y-8 py-12 lg:py-20" id="features">
       {features.header || features.subheader ? (
@@ -13,7 +13,7 @@ export default function Features() {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="grid grid-cols-1 gap-8">
           {features.content.map((cards) => {
-            const Icon = Icons[cards.icon || "blank"];
+            const Icon = Icons[cards.icon ?? "blank"];
 
             return (
               <div
@@ -47,3 +47,5 @@ export default function Features() {
     </section>
   );
 }
+
+export default Features;

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { navLinks } from "@/lib/links";
+import Link from "next/link";
 
 export default function Footer() {
   return (

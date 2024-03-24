@@ -1,7 +1,7 @@
 import { Separator } from "@/components/native/separator";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 import { type ProductType } from "@/types/product";
+import Link from "next/link";
 
 export const DataSection = async ({ product }: { product: ProductType }) => {
   function Price() {
@@ -35,8 +35,8 @@ export const DataSection = async ({ product }: { product: ProductType }) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-sm">Categories:</p>
-        {product.categories.map((category, index) => (
-          <Link key={index} href={`/foods?categories=${category.title}`}>
+        {product.categories.map((category) => (
+          <Link key={category.id} href={`/foods?categories=${category.title}`}>
             <Badge variant="outline">{category.title}</Badge>
           </Link>
         ))}

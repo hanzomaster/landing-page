@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
@@ -5,14 +6,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import Link from "next/link";
 
 const Profile = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage
+            src="https://github.com/shadcn.png"
+            alt="Profile image"
+            aria-label="Profile image"
+            aria-hidden="true"
+          />
           <AvatarFallback>VN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

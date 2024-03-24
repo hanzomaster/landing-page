@@ -23,6 +23,10 @@ const ScrollToTopButton = () => {
 
   return (
     <button
+      name="scroll-to-top-button"
+      title="Scroll to top of the page"
+      aria-label="Scroll to top of the page"
+      aria-labelledby="scroll-to-top-button"
       onClick={scrollToTop}
       className={`fixed bottom-5 right-5 rounded-full bg-background px-3 py-2 text-white transition-colors duration-200 hover:contrast-75 focus:outline-none ${
         isVisible ? "opacity-100" : "opacity-0"

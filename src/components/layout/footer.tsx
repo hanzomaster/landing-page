@@ -31,7 +31,7 @@ export default function Footer() {
             className="hover:underline"
           >
             Red Pangilinan
-          </a>
+          </a>{" "}
           . All Rights Reserved.
         </span>
       </div>

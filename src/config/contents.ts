@@ -10,7 +10,8 @@ import { type ContentSection, type HeroHeader } from "@/types/contents";
 export const heroHeader: HeroHeader = {
   header: `Welcome to hChip`,
   subheader: `hChip is a food delivery service that delivers food to your doorstep.`,
-  image: `/hero-img.webp`,
+  // image: `/hero-img.webp`,
+  image: "",
 };
 
 export const featureCards: ContentSection = {

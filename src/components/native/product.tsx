@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { ImageSkeleton } from "@/components/native/icon";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { type ProductType } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
-import { ImageSkeleton } from "@/components/native/icon";
-import { type ProductType } from "@/types/product";
 
 export const ProductGrid = ({ products }: { products: ProductType[] }) => {
   return (
@@ -61,7 +57,7 @@ export const Product = ({ product }: { product: ProductType }) => {
           <div className="relative h-60 w-full">
             <Image
               className="rounded-t-lg"
-              src={product?.images[0]}
+              src={product.images[0]!}
               alt="product image"
               fill
               sizes="(min-width: 1000px) 30vw, 50vw"

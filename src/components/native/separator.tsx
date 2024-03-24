@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function Separator({ className }: { className?: string }) {
+export function Separator({ className }: Readonly<{ className?: string }>) {
   return (
     <hr
       className={cn(

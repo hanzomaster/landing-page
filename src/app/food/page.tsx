@@ -7,8 +7,8 @@ const Food = () => {
   return (
     <div className="flex flex-col border-neutral-200 px-[1.4rem] dark:border-neutral-700 md:px-[4rem] lg:px-[6rem] xl:px-[8rem] 2xl:px-[12rem]">
       <Heading
-        title="Products"
-        description="Below is a list of products we have available for you."
+        title="Foods"
+        description="Below is a list of foods we have available for you."
       />
       {isVariableValid(products) ? (
         <ProductGrid products={products} />

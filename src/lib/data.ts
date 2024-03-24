@@ -1,3 +1,18 @@
+export const navLinks = [
+  {
+    route: "Home",
+    path: "/",
+  },
+  {
+    route: "Food",
+    path: "/food",
+  },
+  {
+    route: "Onboarding",
+    path: "/onboarding",
+  },
+];
+
 export const products = [
   {
     id: "12345",

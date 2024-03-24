@@ -1,4 +1,4 @@
-import ContactForm from "@/components/pages/contact-form";
+import OnboardingForm from "@/components/pages/onboarding-form";
 import HeadingText from "@/components/heading-text";
 
 export const metadata = {
@@ -11,7 +11,7 @@ function Contact() {
       <div className="flex flex-col items-center space-y-2 text-center">
         <HeadingText subtext="This is subtext">Onboarding</HeadingText>
       </div>
-      <ContactForm />
+      <OnboardingForm />
     </main>
   );
 }

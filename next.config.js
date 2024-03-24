@@ -7,8 +7,14 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    // add source.unsplash.com to the domains
-    domains: ["source.unsplash.com"],
+    // add source.unsplash.com to the remote pattern
+    // domains: ["source.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
+    ],
   },
 };
 

@@ -1,5 +1,5 @@
-// allow use of any in this file
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
@@ -12,12 +12,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { ImageSkeleton } from "@/components/native/icon";
+import { type ProductType } from "@/types/product";
 
-export const ProductGrid = ({ products }: { products: any[] }) => {
+export const ProductGrid = ({ products }: { products: ProductType[] }) => {
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {products.map((product) => (
-        <Product product={product} key={product.id} />
+        <Product product={product} key={Math.random()} />
       ))}
     </div>
   );
@@ -34,7 +35,7 @@ export const ProductSkeletonGrid = () => {
   );
 };
 
-export const Product = ({ product }: { product: any }) => {
+export const Product = ({ product }: { product: ProductType }) => {
   function Price() {
     if (product?.discount > 0) {
       const price = product?.price - product?.discount;
@@ -54,7 +55,7 @@ export const Product = ({ product }: { product: any }) => {
   }
 
   return (
-    <Link className="" href={`/products/${product.id}`}>
+    <Link className="" href={`/foods/${product.id}`}>
       <Card className="h-full">
         <CardHeader className="p-0">
           <div className="relative h-60 w-full">

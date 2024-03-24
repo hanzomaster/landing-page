@@ -8,7 +8,7 @@ import { type ContactConfig, type SiteConfig } from "@/types";
 export const siteConfig: SiteConfig = {
   name: "hChip",
   author: "Thinh Tran & Manh Nguyen",
-  description: "This is a landing page for hChip, a food delivery service.",
+  description: "This is a landing page for hChip, a foods delivery service.",
   keywords: [
     "Next.js",
     "React",

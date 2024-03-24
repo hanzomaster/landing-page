@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,25 +18,25 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
-  subject: z.string().min(1, {
-    message: "Subject is required",
+  name: z.string().min(1, {
+    message: "Name is required",
   }),
-  msg: z.string().min(1, {
+  address: z.string().min(1, {
     message: "Message is required",
   }),
 });
 
-function ContactForm() {
+function OnboardingForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      subject: "",
-      msg: "",
+      name: "",
+      address: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    window.location.href = `mailto:${contactConfig.email}?subject=${values.subject}&body=${values.msg}`;
+    window.location.href = `mailto:${contactConfig.email}?subject=${values.name}&body=${values.address}`;
     form.reset();
   }
 
@@ -49,12 +48,15 @@ function ContactForm() {
       >
         <FormField
           control={form.control}
-          name="subject"
+          name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter the subject" {...field} />
+                <Input
+                  placeholder="Enter the name of your food service"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -62,16 +64,13 @@ function ContactForm() {
         />
         <FormField
           control={form.control}
-          name="msg"
+          name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>Address</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter your message" {...field} />
+                <Textarea placeholder="Enter your Address" {...field} />
               </FormControl>
-              <FormDescription>
-                Your message will be sent through email
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -85,4 +84,4 @@ function ContactForm() {
   );
 }
 
-export default ContactForm;
+export default OnboardingForm;

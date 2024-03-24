@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Profile from "../profile";
 
-export default function Navbar() {
+function Navbar() {
   const [navbar, setNavbar] = useState(false);
 
   const handleClick = async () => {
@@ -69,8 +69,10 @@ export default function Navbar() {
                   </svg>
                 )}
               </button>
-              <div className="mt-[0.125rem] ">
+              <div className=" mt-[0.125rem] flex gap-3">
                 <ModeToggle />
+                <Profile />
+                <LoginButton />
               </div>
             </div>
           </div>
@@ -101,9 +103,38 @@ export default function Navbar() {
               <ModeToggle />
             </div>
           )}
-          <Profile />
+          <div className={"hidden sm:flex sm:gap-4"}>
+            <Profile />
+            <LoginButton />
+          </div>
         </div>
       </nav>
     </header>
   );
 }
+
+const LoginButton = () => (
+  <a href="/auth/login">
+    <button className="flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-4"
+      >
+        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+        <polyline points="10 17 15 12 10 7"></polyline>
+        <line x1="15" x2="3" y1="12" y2="12"></line>
+      </svg>
+      <p>Login</p>
+    </button>
+  </a>
+);
+
+export default Navbar;

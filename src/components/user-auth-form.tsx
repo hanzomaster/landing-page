@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { cn, isVariableValid } from "@/lib/utils";
 import { type HTMLAttributes } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 export function UserAuthForm({
   className,
@@ -24,6 +25,15 @@ export function UserAuthForm({
           </span>
         </div>
       </div>
+      {/* TODO: Implement Google login with Firebase*/}
+      <Button
+        variant="secondary"
+        className="flex items-center justify-center gap-2"
+        onClick={() => console.log("Google login")}
+      >
+        <FcGoogle className="h-6 w-6" />
+        Continue with Google
+      </Button>
     </div>
   );
 }
@@ -76,8 +86,9 @@ function TryComponents() {
           )}
         </div>
         <Button
-        // onClick={onSubmitPhone}
-        // disabled={isLoading || !isIranianPhoneNumberValid(phone)}
+          type={"button"}
+          // onClick={onSubmitPhone}
+          // disabled={isLoading || !isIranianPhoneNumberValid(phone)}
         >
           {/*{isLoading && <Loader className="mr-2 h-4 animate-spin" />}*/}
           Login with Phone

@@ -19,3 +19,21 @@ export interface Brand {
   id: string;
   name: string;
 }
+
+export interface EateryType {
+  id: string;
+  name: string;
+  description: string;
+  images: string[];
+  location: string;
+  hours: string;
+  phone: string;
+  website: string;
+  categories: Category[];
+}
+
+export interface Category {
+  id: string;
+  title: string;
+  description: string;
+}

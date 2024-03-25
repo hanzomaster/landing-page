@@ -23,6 +23,7 @@ const ScrollToTopButton = () => {
 
   return (
     <button
+      type="button"
       name="scroll-to-top-button"
       title="Scroll to top of the page"
       aria-label="Scroll to top of the page"

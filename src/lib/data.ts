@@ -1,4 +1,4 @@
-import { type ProductType } from "@/types/product";
+import { type EateryType, type ProductType } from "@/types/product";
 
 export const navLinks = [
   {
@@ -10,12 +10,12 @@ export const navLinks = [
     path: "/foods",
   },
   {
-    route: "Onboarding",
-    path: "/onboarding",
-  },
-  {
     route: "Eateries",
     path: "/eateries",
+  },
+  {
+    route: "Onboarding",
+    path: "/onboarding",
   },
 ];
 
@@ -367,6 +367,84 @@ export const products: ProductType[] = [
         id: "6",
         title: "Watches",
         description: "Watches",
+      },
+    ],
+  },
+];
+
+export const eateries: EateryType[] = [
+  {
+    id: "12345",
+    name: "Coolest Restaurant Ever",
+    description: "This restaurant serves amazing food, you won't believe it!",
+    images: [
+      "https://source.unsplash.com/featured/?restaurant",
+      "https://source.unsplash.com/featured/?food",
+    ],
+    location: "123 Main St, Anytown, USA",
+    hours: "Mon-Sun: 8am-10pm",
+    phone: "123-456-7890",
+    website: "https://www.example.com",
+    categories: [
+      {
+        id: "1",
+        title: "American",
+        description: "American cuisine",
+      },
+      {
+        id: "2",
+        title: "Fast Food",
+        description: "Fast food",
+      },
+    ],
+  },
+  {
+    id: "54321",
+    name: "Super Cool Cafe",
+    description: "This café serves amazing coffee and pastries!",
+    images: [
+      "https://source.unsplash.com/featured/?cafe",
+      "https://source.unsplash.com/featured/?coffee",
+    ],
+    location: "456 Elm St, Anytown, USA",
+    hours: "Mon-Sun: 7am-7pm",
+    phone: "234-567-8901",
+    website: "https://www.example.com",
+    categories: [
+      {
+        id: "3",
+        title: "Cafe",
+        description: "Cafe",
+      },
+      {
+        id: "4",
+        title: "Coffee Shop",
+        description: "Coffee shop",
+      },
+    ],
+  },
+  {
+    id: "67890",
+    name: "Awesome Diner",
+    description: "This diner serves classic American comfort food!",
+    images: [
+      "https://source.unsplash.com/featured/?diner",
+      "https://source.unsplash.com/featured/?food",
+    ],
+    location: "789 Oak St, Anytown, USA",
+    hours: "Mon-Sun: 6am-9pm",
+    phone: "345-678-9012",
+    website: "https://www.example.com",
+    categories: [
+      {
+        id: "5",
+        title: "Diner",
+        description: "Diner",
+      },
+      {
+        id: "6",
+        title: "American",
+        description: "American cuisine",
       },
     ],
   },

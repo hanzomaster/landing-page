@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn, isVariableValid } from "@/lib/utils";
-import { type HTMLAttributes } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { type HTMLAttributes } from "react";
 import { FcGoogle } from "react-icons/fc";
 
-export function UserAuthForm({
+function UserAuthForm({
   className,
   ...props
 }: Readonly<HTMLAttributes<HTMLDivElement>>) {

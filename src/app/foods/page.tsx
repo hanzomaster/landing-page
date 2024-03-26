@@ -1,27 +1,34 @@
 "use client";
 import Heading from "@/components/native/heading";
 import { ProductGrid } from "@/components/native/product";
+import { ProductSkeletonGrid } from "@/components/native/skeleton";
+import MultipleListBox from "@/components/ui/headless/listbox";
+import { Input } from "@/components/ui/input";
 import { products } from "@/lib/data";
 import { isVariableValid } from "@/lib/utils";
 import { type ChangeEvent, useMemo, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { ProductSkeletonGrid } from "@/components/native/skeleton";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import { Checkbox } from "@/components/ui/checkbox";
 
+const categoryList = products.reduce((acc: string[], product) => {
+  product.categories.forEach((category) => {
+    if (!acc.some((cat) => cat === category.title)) {
+      acc.push(category.title);
+    }
+  });
+  return acc;
+}, []);
 const Food = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
   const filteredItems = useMemo(() => {
-    return products.filter((product) =>
-      product.title.toLowerCase().includes(searchValue.toLowerCase()),
+    return products.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchValue.toLowerCase()) &&
+        (categories.length === 0 ||
+          categories.some((category) =>
+            product.categories.map((c) => c.title).includes(category),
+          )),
     );
-  }, [searchValue]);
+  }, [categories, searchValue]);
 
   return (
     <div className="flex flex-col border-neutral-200 px-[1.4rem] dark:border-neutral-700 md:px-[4rem] lg:px-[6rem] xl:px-[8rem] 2xl:px-[12rem]">
@@ -31,27 +38,12 @@ const Food = () => {
           description="Below is a list of foods we have available for you."
         />
         <div className="block md:flex">
-          <div className={"w-full cursor-pointer select-none md:my-3"}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div>osidhfiosdhf</div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Checkbox id="terms" />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Accept terms and conditions
-                  </label>
-                </DropdownMenuItem>
-                <Link href={"/auth/login"}>
-                  <DropdownMenuItem>Sign in</DropdownMenuItem>
-                </Link>
-                <DropdownMenuItem>Log out</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <div className={"w-full md:my-3"}>
+            <MultipleListBox
+              categoryList={categoryList}
+              categories={categories}
+              setCategories={setCategories}
+            />
           </div>
           {/*Search bar*/}
           <div className="flex w-full items-center py-2 dark:bg-background md:p-2">

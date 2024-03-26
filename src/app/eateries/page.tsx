@@ -1,20 +1,39 @@
 "use client";
-import Heading from "@/components/native/heading";
-import { eateries } from "@/lib/data";
-import { isVariableValid } from "@/lib/utils";
-import { type ChangeEvent, useMemo, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { ProductSkeletonGrid } from "@/components/native/skeleton";
 import { EateryGrid } from "@/components/native/eatery";
-import { ComboBoxResponsive } from "@/components/ui/combobox";
+import Heading from "@/components/native/heading";
+import { ProductSkeletonGrid } from "@/components/native/skeleton";
+import MultipleListBox from "@/components/ui/headless/listbox";
+import { Input } from "@/components/ui/input";
+import { eateries, products } from "@/lib/data";
+import { isVariableValid } from "@/lib/utils";
+import type { Category } from "@/types/product";
+import { type ChangeEvent, useMemo, useState } from "react";
 
+const categoryList = products.reduce((acc: Category[], product) => {
+  product.categories.forEach((category) => {
+    if (!acc.some((cat) => cat.id === category.id)) {
+      acc.push(category);
+    }
+  });
+  return acc;
+}, []);
 const Eateries = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [categories, setCategories] = useState<Category[]>([]);
   const filteredItems = useMemo(() => {
     return eateries.filter((eatery) =>
-      eatery.name.toLowerCase().includes(searchValue.toLowerCase()),
+      // eatery.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+      // (categories.length === 0 ||
+      //   categories.some((category) => eatery.categories.includes(category))),
+      {
+        return (
+          eatery.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+          (categories.length === 0 ||
+            categories.some((category) => eatery.categories.includes(category)))
+        );
+      },
     );
-  }, [searchValue]);
+  }, [categories, searchValue]);
 
   return (
     <div className="flex flex-col border-neutral-200 px-[1.4rem] dark:border-neutral-700 md:px-[4rem] lg:px-[6rem] xl:px-[8rem] 2xl:px-[12rem]">
@@ -25,7 +44,11 @@ const Eateries = () => {
         />
         <div className="block md:flex">
           <div className={"w-full md:my-3"}>
-            <ComboBoxResponsive />
+            <MultipleListBox
+              categoryList={categoryList}
+              categories={categories}
+              setCategories={setCategories}
+            />
           </div>
           {/*Search bar*/}
           <div className="flex w-full items-center py-2 dark:bg-background md:p-2">

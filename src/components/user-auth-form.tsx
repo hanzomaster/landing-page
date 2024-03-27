@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn, isVariableValid } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type HTMLAttributes } from "react";
+import { type ChangeEvent, type HTMLAttributes } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 function UserAuthForm({
@@ -46,7 +46,7 @@ function TryComponents() {
   const email = searchParams.get("email");
   const phone = searchParams.get("phone");
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     const params = new URLSearchParams(Array.from(searchParams.entries()));
 
     params.set("email", event.target.value);

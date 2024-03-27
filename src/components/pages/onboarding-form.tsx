@@ -24,14 +24,22 @@ const formSchema = z.object({
   address: z.string().min(1, {
     message: "Message is required",
   }),
+  number: z.number().min(1, {
+    message: "Number is required",
+  }),
+  type: z.string().min(1, {
+    message: "Type is required",
+  }),
 });
 
 function OnboardingForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      address: "",
+      name: undefined,
+      address: undefined,
+      number: undefined,
+      type: undefined,
     },
   });
 
@@ -69,13 +77,41 @@ function OnboardingForm() {
             <FormItem>
               <FormLabel>Address</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter your Address" {...field} />
+                <Textarea placeholder="Enter your address" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div />
+        <FormField
+          control={form.control}
+          name="number"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone</FormLabel>
+              <FormControl>
+                <Input placeholder="089123xxxx" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Fast food, Cafeterias, Buffets, Casual, ..."
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button className="w-full" type="submit">
           Submit
         </Button>

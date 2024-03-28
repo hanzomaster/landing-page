@@ -1,123 +1,163 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { contactConfig } from "@/config/site";
-
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import * as z from "zod";
+
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { phoneRegex } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const formSchema = z.object({
-  name: z.string().min(1, {
-    message: "Name is required",
+  firstName: z.string().min(1, {
+    message: "First name is required",
+  }),
+  lastName: z.string().min(1, {
+    message: "Last name is required",
+  }),
+  email: z.string().email({
+    message: "Email is required",
   }),
   address: z.string().min(1, {
-    message: "Message is required",
+    message: "Address is required",
   }),
-  number: z.number().min(1, {
-    message: "Number is required",
-  }),
+  number: z.string().regex(phoneRegex, "Invalid phone number"),
   type: z.string().min(1, {
     message: "Type is required",
   }),
 });
 
+type FormField = z.infer<typeof formSchema>;
+
 function OnboardingForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isSubmit, setIsSubmit] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormField>({
     defaultValues: {
-      name: undefined,
-      address: undefined,
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
       number: undefined,
-      type: undefined,
+      type: "",
     },
+    resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    window.location.href = `mailto:${contactConfig.email}?subject=${values.name}&body=${values.address}`;
-    form.reset();
-  }
+  const onSubmit = handleSubmit(async (data) => {
+    setIsSubmit(true);
+    console.log("data", data);
+    console.log(isSubmit);
+  });
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full space-y-4 py-8 sm:w-[24rem]"
-      >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Enter the name of your food service"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="address"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Address</FormLabel>
-              <FormControl>
-                <Textarea placeholder="Enter your address" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="number"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone</FormLabel>
-              <FormControl>
-                <Input placeholder="089123xxxx" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="type"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Type</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Fast food, Cafeterias, Buffets, Casual, ..."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button className="w-full" type="submit">
-          Submit
-        </Button>
-      </form>
-    </Form>
+    <Card className="mx-auto max-w-sm">
+      <CardHeader>
+        <CardTitle className="text-xl">Sign Up</CardTitle>
+        <CardDescription>
+          Enter your information to create an account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form className="grid gap-4" onSubmit={onSubmit}>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="first-name">First name</Label>
+              <Input
+                {...register("firstName")}
+                id="first-name"
+                placeholder="Max"
+                required
+              />
+              {errors.firstName && (
+                <p className="text-sm text-destructive">
+                  {errors.firstName.message}
+                </p>
+              )}
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="last-name">Last name</Label>
+              <Input
+                {...register("lastName")}
+                id="last-name"
+                placeholder="Robinson"
+                required
+              />
+              {errors.lastName && (
+                <p className="text-sm text-destructive">
+                  {errors.lastName.message}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              {...register("email")}
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+            {errors.email && (
+              <p className="text-sm text-destructive">{errors.email.message}</p>
+            )}
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="address">Address</Label>
+            <Input {...register("address")} id="address" type="text" required />
+            {errors.address && (
+              <p className="text-sm text-destructive">
+                {errors.address.message}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="number">Number</Label>
+            <Input
+              {...register("number")}
+              id="number"
+              type="tel"
+              required
+              placeholder='e.g. "12345678"'
+            />
+            {errors.number && (
+              <p className="text-sm text-destructive">
+                {errors.number.message}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="type">Type</Label>
+            <Input
+              {...register("type")}
+              id="type"
+              type="text"
+              required
+              placeholder="e.g. 'Fast food, Cafeterias, Buffets, Casual, ...'"
+            />
+            {errors.type && (
+              <p className="text-sm text-destructive">{errors.type.message}</p>
+            )}
+          </div>
+          <Button type="submit" className="w-full">
+            Submit
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }
-
 export default OnboardingForm;

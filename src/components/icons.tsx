@@ -1,4 +1,13 @@
+import { env } from "@/env";
 import Image from "next/image";
+import {
+  AiOutlineClose,
+  AiOutlineEllipsis,
+  AiOutlineFileSearch,
+  AiOutlinePlus,
+  AiOutlineWarning,
+} from "react-icons/ai";
+import { BiBarChartAlt, BiCalendar, BiHistory } from "react-icons/bi";
 import {
   BsCheck2,
   BsChevronDown,
@@ -9,19 +18,11 @@ import {
   BsMoonStars,
   BsSun,
 } from "react-icons/bs";
-import {
-  AiOutlineClose,
-  AiOutlineEllipsis,
-  AiOutlineFileSearch,
-  AiOutlinePlus,
-  AiOutlineWarning,
-} from "react-icons/ai";
-import { MdDeleteForever, MdOutlineLogout } from "react-icons/md";
-import { BiBarChartAlt, BiCalendar, BiHistory } from "react-icons/bi";
 import { FaSort, FaUserAlt } from "react-icons/fa";
 import { ImSpinner8, ImStatsBars } from "react-icons/im";
-import { RxMixerHorizontal } from "react-icons/rx";
 import { LuSettings } from "react-icons/lu";
+import { MdDeleteForever, MdOutlineLogout } from "react-icons/md";
+import { RxMixerHorizontal } from "react-icons/rx";
 
 export type IconKeys = keyof typeof icons;
 
@@ -38,7 +39,7 @@ const icons = {
   nextjs: () => {
     return (
       <Image
-        src="next.svg"
+        src={`${env.S3_URL}/1711646674800-next.svg`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}
@@ -49,7 +50,7 @@ const icons = {
   shadcnUi: () => {
     return (
       <Image
-        src="shadcn-ui.svg"
+        src={`${env.S3_URL}/1711646696973-shadcn-ui.svg`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}
@@ -60,7 +61,7 @@ const icons = {
   vercel: () => {
     return (
       <Image
-        src="vercel.svg"
+        src={`${env.S3_URL}/1711646714676-vercel.svg`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}

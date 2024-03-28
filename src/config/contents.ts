@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { type ContentSection, type HeroHeader } from "@/types/contents";
 
 /* ====================
@@ -11,7 +12,7 @@ export const heroHeader: HeroHeader = {
   header: `Welcome to hChip`,
   subheader: `hChip is a food delivery service that delivers food to your doorstep.`,
   // image: `/hero-img.webp`,
-  image: "",
+  image: `${env.S3_URL}/1711647204486-hero-img.webp`,
 };
 
 export const featureCards: ContentSection = {
@@ -39,7 +40,7 @@ export const featureCards: ContentSection = {
 export const features: ContentSection = {
   header: `Features`,
   subheader: `Why use Next Landing?`,
-  image: `/features-img.webp`,
+  image: `${env.S3_URL}/1711646539286-features-img.webp`,
   content: [
     {
       text: `SEO Optimized`,

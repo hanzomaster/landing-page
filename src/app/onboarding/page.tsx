@@ -1,5 +1,5 @@
-import OnboardingForm from "@/components/pages/onboarding-form";
 import HeadingText from "@/components/heading-text";
+import OnboardingForm from "@/components/pages/onboarding-form";
 
 export const metadata = {
   title: "Onboarding",
@@ -7,11 +7,11 @@ export const metadata = {
 
 function Contact() {
   return (
-    <main className="container flex flex-col items-center py-8">
-      <div className="flex flex-col items-center space-y-2 text-center">
-        <HeadingText subtext="This is subtext">Onboarding</HeadingText>
+    <main className="container flex h-[70vh] flex-col items-center justify-center gap-4">
+      <HeadingText>Onboarding</HeadingText>
+      <div>
+        <OnboardingForm />
       </div>
-      <OnboardingForm />
     </main>
   );
 }

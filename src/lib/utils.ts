@@ -36,3 +36,7 @@ export function getErrorResponse(
 export function isVariableValid(variable: unknown) {
   return variable !== null && variable !== undefined;
 }
+
+export const phoneRegex = new RegExp(
+  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+);

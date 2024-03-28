@@ -59,8 +59,3 @@ build tag commit:
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
       --cache=true
       --destination "$IMAGE_REGISTRY_URL/$IMAGE_NAME_BUILD"
-
-
-
-
-

@@ -1,6 +1,6 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { type Dispatch, Fragment, type SetStateAction } from "react";
+import { Fragment, type Dispatch, type SetStateAction } from "react";
 
 const MultipleListBox = ({
   categoryList,
@@ -30,7 +30,7 @@ const MultipleListBox = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-sm bg-white py-1 text-sm shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-background dark:text-white">
+            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-sm bg-white py-1 text-sm shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-primary-foreground dark:text-white">
               {categoryList.map((category, categoryIdx) => (
                 <Listbox.Option
                   key={categoryIdx}

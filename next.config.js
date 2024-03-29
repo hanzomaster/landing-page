@@ -12,6 +12,10 @@ const config = {
     // add source.unsplash.com to the remote pattern
     // domains: ["source.unsplash.com"],
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
       // {
       //   protocol: "http",
       //   hostname: "42.96.13.169",

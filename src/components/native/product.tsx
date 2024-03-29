@@ -30,7 +30,7 @@ export const Product = ({ product }: { product: ProductType }) => {
             <div className="line-through">${product?.price}</div>
             <div>%{percentage.toFixed(2)}</div>
           </Badge>
-          <h2 className="">${price.toFixed(2)}</h2>
+          <h2>${price.toFixed(2)}</h2>
         </div>
       );
     }
@@ -39,7 +39,7 @@ export const Product = ({ product }: { product: ProductType }) => {
   }
 
   return (
-    <Link className="" href={`/foods/${product.id}`}>
+    <Link href={`/foods/${product.id}`}>
       <Card className="h-full">
         <CardHeader className="p-0">
           <div className="relative h-60 w-full">

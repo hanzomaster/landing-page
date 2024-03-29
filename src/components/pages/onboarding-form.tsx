@@ -58,8 +58,6 @@ function OnboardingForm() {
 
   const onSubmit = handleSubmit(async (data) => {
     setIsSubmit(true);
-    console.log("data", data);
-    console.log(isSubmit);
   });
 
   return (

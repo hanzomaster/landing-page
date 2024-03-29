@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json ./
 
 RUN corepack enable
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 COPY . .
 ENV TZ=Asia/Ho_Chi_Minh
 ENV NODE_ENV=production

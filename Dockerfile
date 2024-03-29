@@ -7,6 +7,6 @@ RUN pnpm install
 COPY . .
 ENV TZ=Asia/Ho_Chi_Minh
 ENV NODE_ENV=production
-RUN pnpm build
+RUN SKIP_ENV_VALIDATION=1 pnpm build
 CMD pnpm start
 EXPOSE 3000

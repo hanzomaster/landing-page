@@ -8,10 +8,6 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    S3_PROTOCOL: z.enum(["http", "https"]),
-    S3_HOST: z.string(),
-    S3_PORT: z.string(),
-    S3_PATHNAME: z.string(),
     S3_URL: z.string(),
   },
 
@@ -30,10 +26,6 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    S3_PROTOCOL: process.env.S3_PROTOCOL,
-    S3_HOST: process.env.S3_HOST,
-    S3_PORT: process.env.S3_PORT,
-    S3_PATHNAME: process.env.S3_PATHNAME,
     S3_URL: process.env.S3_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },

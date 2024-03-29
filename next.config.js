@@ -1,4 +1,3 @@
-import { env } from './src/env.js';
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -14,19 +13,7 @@ const config = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "source.unsplash.com",
-      },
-      // {
-      //   protocol: "http",
-      //   hostname: "42.96.13.169",
-      //   port: "3113",
-      //   pathname: "/download/**"
-      // },
-      {
-        protocol: env.S3_PROTOCOL,
-        hostname: env.S3_HOST,
-        port: env.S3_PORT,
-        pathname: env.S3_PATHNAME,
+        hostname: "**",
       },
     ],
   },

@@ -1,5 +1,6 @@
 stages:
     - build
+    - deploy
 
 variables:
   IMAGE_REGISTRY_USER: $REPO_USER
@@ -59,3 +60,15 @@ build tag commit:
       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
       --cache=true
       --destination "$IMAGE_REGISTRY_URL/$IMAGE_NAME_BUILD"
+
+
+
+deploy:
+    stage: deploy
+    tags:
+      - ${RUNNER_TAG}
+    # only: 
+    #     - main
+    image: alpine/k8s:1.23.16
+    script: |
+      sh k8s-deployment/deploy.sh

@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 
-import { Inter } from "next/font/google";
-import { siteConfig } from "@/config/site";
-import { settings } from "@/config/settings";
-import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
-import { type ReactNode } from "react";
+import Navbar from "@/components/layout/navbar";
 import ScrollToTopButton from "@/components/scroll-to-top";
+import { ThemeProvider } from "@/components/theme-provider";
+import { settings } from "@/config/settings";
+import { siteConfig } from "@/config/site";
+import { Inter } from "next/font/google";
+import { type ReactNode } from "react";
 
 const inter = Inter({
   subsets: ["latin"],

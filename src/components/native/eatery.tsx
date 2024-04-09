@@ -3,8 +3,9 @@ import { type EateryType } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { type Restaurant } from "@/types/restaurant";
 
-export const EateryGrid = ({ eateries }: { eateries: EateryType[] }) => {
+export const EateryGrid = ({ eateries }: { eateries: Restaurant[] }) => {
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {eateries.map((eatery) => (

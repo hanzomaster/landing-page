@@ -1,3 +1,5 @@
+import * as z from "zod";
+
 export type SiteConfig = {
   name: string;
   author: string;
@@ -21,3 +23,13 @@ export type Layout = {
     features: string;
   };
 };
+
+export const ApiResponseSchema = z.object({
+  data: z.array(),
+  count: z.number(),
+  totalCount: z.number(),
+  page: z.number(),
+  size: z.number(),
+  totalPage: z.number(),
+});
+export type ApiResponse = z.infer<typeof ApiResponseSchema>;

@@ -1,6 +1,8 @@
 stages:
+    - build_env
     - build
     - deploy
+
 
 variables:
   IMAGE_REGISTRY_USER: $REPO_USER
@@ -15,6 +17,18 @@ variables:
   IMAGE_NAME_BUILD: $CI_PROJECT_NAME:$CI_COMMIT_BRANCH.$IMAGE_TAG
   IMAGE_NAME_BUILD_LATEST: $CI_PROJECT_NAME:$CI_COMMIT_BRANCH.latest
   # RUNNER_TAG: dev
+
+build_env:
+  tags:
+    - ${RUNNER_TAG}
+  stage: build_env
+  image: alpine/k8s:1.23.16
+  script:
+    - cat $PATH_DOCKER_BUILD_ENV_FILE > .env
+  artifacts:
+    paths:
+      - .env
+
 
 build:
   stage: build

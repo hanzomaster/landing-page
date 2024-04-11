@@ -72,7 +72,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: hanzomaster.me
+    - host: $CI_PROJECT_NAME.hanzomaster.me
       http:
         paths:
           - backend:

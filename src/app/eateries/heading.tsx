@@ -1,7 +1,8 @@
-import { type ChangeEvent, useState } from "react";
+"use client";
 import Heading from "@/components/native/heading";
 import MultipleListBox from "@/components/ui/headless/listbox";
 import { Input } from "@/components/ui/input";
+import { type ChangeEvent, useState } from "react";
 
 const EateriesHeading = ({ categoryList }: { categoryList: string[] }) => {
   const [searchValue, setSearchValue] = useState("");

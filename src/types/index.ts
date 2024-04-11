@@ -25,7 +25,7 @@ export type Layout = {
 };
 
 export const ApiResponseSchema = z.object({
-  data: z.array(),
+  data: z.any(),
   count: z.number(),
   totalCount: z.number(),
   page: z.number(),

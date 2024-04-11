@@ -63,7 +63,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
     ingress.kubernetes.io/proxy-body-size: '0'   
-    external-dns.alpha.kubernetes.io/target: 113.190.252.173
+    external-dns.alpha.kubernetes.io/target: 42.96.13.169
     external-dns.alpha.kubernetes.io/cloudflare-proxied: 'true'   
   labels:
     {}
@@ -72,7 +72,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: $CI_PROJECT_NAME.hanzomaster.me
+    - host: hanzomaster.me
       http:
         paths:
           - backend:

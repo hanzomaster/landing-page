@@ -3,25 +3,29 @@ import * as z from "zod";
 export const SocialMediaLinksSchema = z.object({
   facebook: z.string(),
   instagram: z.string(),
-  orther: z.string(),
+  other: z.string(),
 });
 export type SocialMediaLinks = z.infer<typeof SocialMediaLinksSchema>;
 
-export const DaySchema = z.object({
-  start: z.string(),
-  end: z.string(),
-});
+export const DaySchema = z
+  .object({
+    start: z.string(),
+    end: z.string(),
+  })
+  .partial();
 export type Day = z.infer<typeof DaySchema>;
 
-export const OpeningHoursSchema = z.object({
-  Monday: DaySchema,
-  Tuesday: DaySchema,
-  Wednesday: DaySchema,
-  Thursday: DaySchema,
-  Friday: DaySchema,
-  Saturday: DaySchema,
-  Sunday: DaySchema,
-});
+export const OpeningHoursSchema = z
+  .object({
+    Monday: DaySchema,
+    Tuesday: DaySchema,
+    Wednesday: DaySchema,
+    Thursday: DaySchema,
+    Friday: DaySchema,
+    Saturday: DaySchema,
+    Sunday: DaySchema,
+  })
+  .partial();
 export type OpeningHours = z.infer<typeof OpeningHoursSchema>;
 
 export const LocationCoordinatesSchema = z.object({
@@ -50,16 +54,16 @@ export const RestaurantSchema = z.object({
   socialMediaLinks: SocialMediaLinksSchema,
   statusRestaurants: z.string(),
   openingHours: OpeningHoursSchema,
-  note: z.null(),
-  description: z.string(),
-  status: z.null(),
-  isActive: z.null(),
-  updateAt: z.null(),
-  updateAtTimestamp: z.null(),
-  updateBy: z.null(),
-  createBy: z.null(),
-  createAtTimestamp: z.null(),
-  createAt: z.null(),
+  note: z.string().nullish(),
+  description: z.string().nullish(),
+  status: z.boolean().nullish(),
+  isActive: z.boolean().nullish(),
+  updateAt: z.string().datetime(),
+  updateAtTimestamp: z.number(),
+  updateBy: z.string(),
+  createBy: z.string().nullish(),
+  createAtTimestamp: z.number(),
+  createAt: z.string().datetime(),
   name: z.string(),
 });
 export type Restaurant = z.infer<typeof RestaurantSchema>;

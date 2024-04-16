@@ -25,11 +25,14 @@ export type Layout = {
 };
 
 export const ApiResponseSchema = z.object({
-  data: z.any(),
-  count: z.number(),
-  totalCount: z.number(),
-  page: z.number(),
-  size: z.number(),
-  totalPage: z.number(),
+  result: z.object({
+    data: z.array(z.any()),
+    count: z.number(),
+    totalCount: z.number(),
+    page: z.number(),
+    size: z.number(),
+    totalPage: z.number(),
+  }),
 });
+
 export type ApiResponse = z.infer<typeof ApiResponseSchema>;

@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { type Restaurant } from "@/types/restaurant";
 
-export const EateryGrid = ({ eateries }: { eateries: any[] }) => {
+export const EateryGrid = ({ eateries }: { eateries: Restaurant[] }) => {
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {eateries.map((eatery) => (
@@ -19,7 +14,7 @@ export const EateryGrid = ({ eateries }: { eateries: any[] }) => {
   );
 };
 
-export const Eatery = ({ eatery }: { eatery: any }) => {
+export const Eatery = ({ eatery }: { eatery: Restaurant }) => {
   return (
     <Link className="" href={`/foods/${eatery._id}`}>
       <Card className="h-full">
@@ -27,7 +22,7 @@ export const Eatery = ({ eatery }: { eatery: any }) => {
           <div className="relative h-60 w-full">
             <Image
               className="rounded-t-lg"
-              src={eatery.imagePaths[0]}
+              src={"https://source.unsplash.com/featured/?restaurant"}
               alt="product image"
               fill
               sizes="(min-width: 1000px) 30vw, 50vw"

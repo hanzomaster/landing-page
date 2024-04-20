@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { type Restaurant } from "@/types/restaurant";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
-import { type Restaurant } from "@/types/restaurant";
 
 export const EateryGrid = ({ eateries }: { eateries: Restaurant[] }) => {
   return (
@@ -16,7 +16,7 @@ export const EateryGrid = ({ eateries }: { eateries: Restaurant[] }) => {
 
 export const Eatery = ({ eatery }: { eatery: Restaurant }) => {
   return (
-    <Link className="" href={`/foods/${eatery._id}`}>
+    <Link className="" href={`/eateries/${eatery._id}`}>
       <Card className="h-full">
         <CardHeader className="p-0">
           <div className="relative h-60 w-full">
@@ -31,9 +31,9 @@ export const Eatery = ({ eatery }: { eatery: Restaurant }) => {
           </div>
         </CardHeader>
         <CardContent className="grid gap-1 p-4">
-          <Badge variant="outline" className="w-min text-neutral-500">
+          <Badge variant="outline" className="w-fit text-neutral-500">
             {/* TODO: fix to title not here */}
-            {eatery?.CCCD}
+            {eatery?.cuisineType}
           </Badge>
 
           <h2 className="mt-2">{eatery.name}</h2>

@@ -2,11 +2,13 @@ import { EateryGrid } from "@/components/native/eatery";
 import { ProductSkeletonGrid } from "@/components/native/skeleton";
 import { env } from "@/env";
 import { isVariableValid } from "@/lib/utils";
-import { type ApiResponse, ApiResponseSchema } from "@/types";
-import EateriesHeading from "./heading";
+import { ApiResponseSchema, type ApiResponse } from "@/types";
+import { RestaurantSchema, type Restaurant } from "@/types/restaurant";
+import axios from "axios";
 import { z } from "zod";
-import { type Restaurant, RestaurantSchema } from "@/types/restaurant";
+import EateriesHeading from "./heading";
 
+export const revalidate = 30;
 // const categoryList = eateries.reduce((acc: string[], product) => {
 //   product.categories.forEach((category) => {
 //     if (!acc.some((cat) => cat === category.title)) {
@@ -17,22 +19,31 @@ import { type Restaurant, RestaurantSchema } from "@/types/restaurant";
 // }, []);
 
 async function getData(): Promise<ApiResponse> {
-  console.log(`${env.BACKEND_URL}/restaurants`);
-  return fetch(`${env.BACKEND_URL}/restaurants?size=100`).then(async (res) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const json = await res.json();
-    return ApiResponseSchema.parse(json);
-  });
+  try {
+    const res = await axios.get(`${env.BACKEND_URL}/restaurants`);
+    return ApiResponseSchema.parse(res.data);
+  } catch (e) {
+    console.log(e);
+    return {
+      result: {
+        data: [],
+        count: 0,
+        totalCount: 0,
+        page: 0,
+        size: 0,
+        totalPage: 0,
+      },
+    };
+  }
 }
 const Eateries = async () => {
   const eateries = await getData();
   const restaurants = z.array(RestaurantSchema).parse(eateries.result.data);
-  // console.log(restaurants.at(0));
   const categoryList = restaurants.reduce(
     (acc: string[], eatery: Restaurant) => {
-      if (acc.indexOf(eatery.cuisineType!) === -1) {
+      if (acc.indexOf(eatery?.cuisineType) === -1) {
         // Check if it doesn't exist
-        acc.push(eatery.cuisineType!);
+        acc.push(eatery?.cuisineType);
       }
       return acc;
     },

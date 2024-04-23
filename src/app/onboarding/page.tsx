@@ -7,8 +7,8 @@ export const metadata = {
 
 function Contact() {
   return (
-    <main className="container flex h-[70vh] flex-col items-center justify-center gap-4">
-      <HeadingText>Onboarding</HeadingText>
+    <main className="container flex h-[70vh] flex-col items-center justify-center gap-4 my-32">
+      <HeadingText>Xác minh thông tin</HeadingText>
       <div>
         <OnboardingForm />
       </div>

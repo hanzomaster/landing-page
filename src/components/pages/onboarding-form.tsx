@@ -21,7 +21,7 @@ import useLocationForm from "@/app/location/useLocationForm";
 import Select from "react-select";
 
 const formSchema = z.object({
-  firstName: z.string().min(1, {
+  restaurantName: z.string().min(1, {
     message: "First name is required",
   }),
   lastName: z.string().min(1, {
@@ -49,7 +49,7 @@ function OnboardingForm() {
     formState: { errors },
   } = useForm<FormField>({
     defaultValues: {
-      firstName: "",
+      restaurantName: "",
       lastName: "",
       email: "",
       address: "",
@@ -79,46 +79,33 @@ function OnboardingForm() {
   });
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto my-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Sign Up</CardTitle>
+        <CardTitle className="text-xl justify-center">Xác thực thông tin nhà hàng</CardTitle>
         <CardDescription>
-          Enter your information to complete verification
+          Điền thông tin của bạn để hoàn thiện xác minh thông tin
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form className="grid gap-4" onSubmit={onSubmit}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="first-name">First name</Label>
+              <Label htmlFor="first-name">Tên nhà hàng</Label>
               <Input
-                {...register("firstName")}
+                {...register("restaurantName")}
                 id="first-name"
-                placeholder="Max"
+                placeholder="Sen Tây Hồ"
                 required
               />
-              {errors.firstName && (
+              {errors.restaurantName && (
                 <p className="text-sm text-destructive">
-                  {errors.firstName.message}
-                </p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="last-name">Last name</Label>
-              <Input
-                {...register("lastName")}
-                id="last-name"
-                placeholder="Robinson"
-                required
-              />
-              {errors.lastName && (
-                <p className="text-sm text-destructive">
-                  {errors.lastName.message}
+                  {errors.restaurantName.message}
                 </p>
               )}
             </div>
           </div>
           <div className="grid gap-2">
+          <Label htmlFor="first-name">Địa chỉ</Label>
           <Select
                       name="cityId"
                       className="my-react-select-container"
@@ -177,6 +164,15 @@ function OnboardingForm() {
                     />
           </div>
           <div className="grid gap-2">
+            <Label htmlFor="address">Địa chỉ chi tiết</Label>
+            <Input {...register("address")} id="address" type="text" required />
+            {errors.address && (
+              <p className="text-sm text-destructive">
+                {errors.address.message}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
               {...register("email")}
@@ -190,16 +186,7 @@ function OnboardingForm() {
             )}
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="address">Address</Label>
-            <Input {...register("address")} id="address" type="text" required />
-            {errors.address && (
-              <p className="text-sm text-destructive">
-                {errors.address.message}
-              </p>
-            )}
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="number">Number</Label>
+            <Label htmlFor="number">Số điện thoại</Label>
             <Input
               {...register("number")}
               id="number"
@@ -214,7 +201,7 @@ function OnboardingForm() {
             )}
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="type">Type</Label>
+            <Label htmlFor="type">Loại nhà hàng</Label>
             <Input
               {...register("type")}
               id="type"
@@ -227,7 +214,7 @@ function OnboardingForm() {
             )}
           </div>
           <Button type="submit" className="w-full">
-            Submit
+            Gửi biểu mẫu
           </Button>
         </form>
       </CardContent>

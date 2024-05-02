@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import ChooseLocation from "@/app/location/locationselector";
 import useLocationForm from "@/app/location/useLocationForm";
 import Select from "react-select";
+import { useToast } from "../ui/use-toast";
 
 const formSchema = z.object({
   restaurantName: z.string().min(1, {
@@ -43,6 +44,8 @@ type FormField = z.infer<typeof formSchema>;
 
 function OnboardingForm() {
   const [isSubmit, setIsSubmit] = useState(false);
+  // const { add: toast } = useToast();
+  const { toast } = useToast()
   const {
     register,
     handleSubmit,
@@ -74,7 +77,7 @@ function OnboardingForm() {
   const [ward, setWard] = useState("");
   const [idAddress, setIdAddress] = useState("");
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(() => {
     setIsSubmit(true);
   });
 
@@ -213,7 +216,12 @@ function OnboardingForm() {
               <p className="text-sm text-destructive">{errors.type.message}</p>
             )}
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" onClick={() => {
+            toast({
+              title: "Gửi biểu mẫu thành công!",
+              description: "Chúng tôi sẽ thông báo đến bạn qua email khi xác minh hoàn tất.",
+            })
+          }}>
             Gửi biểu mẫu
           </Button>
         </form>

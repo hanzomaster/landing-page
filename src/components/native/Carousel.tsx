@@ -26,11 +26,11 @@ export default function Carousel({ images }: { images: string[] }) {
 
   return (
     <>
-      <div className="overflow-hidden rounded-lg" ref={emblaRef}>
-        <div className="flex">
+      <div className="overflow-hidden rounded-lg h-full" ref={emblaRef}>
+        <div className="flex h-full">
           {images.map((src, i) => (
-            <div className="relative h-96 flex-[0_0_100%]" key={i}>
-              <Image src={src} fill className="object-cover" alt="" />
+            <div className="relative h-full flex-[0_0_100%]" key={i}>
+              <Image src={src} fill className="object-fit" alt="" />
             </div>
           ))}
         </div>

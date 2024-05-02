@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import ScrollToTopButton from "@/components/scroll-to-top";
@@ -8,6 +7,7 @@ import { settings } from "@/config/settings";
 import { siteConfig } from "@/config/site";
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,12 +65,16 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         {settings.themeToggleEnabled ? (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
+            <Toaster/>
             {children}
             <Footer />
+          
           </ThemeProvider>
         ) : (
           <ThemeProvider attribute="class" forcedTheme="light" enableSystem>
+            
             <Navbar />
+            <Toaster/>
             {children}
             <Footer />
           </ThemeProvider>

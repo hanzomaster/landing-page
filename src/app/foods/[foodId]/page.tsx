@@ -1,11 +1,11 @@
+import { products } from "@/lib/data";
 import { isVariableValid } from "@/lib/utils";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
-import { products } from "@/lib/data";
 
-import { DataSection } from "./components/data";
 import Carousel from "@/components/native/Carousel";
 import { type ProductType } from "@/types/product";
+import { DataSection } from "./components/data";
 
 const product = products.at(0)!;
 

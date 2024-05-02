@@ -6,7 +6,7 @@ import MultipleListBox from "@/components/ui/headless/listbox";
 import { Input } from "@/components/ui/input";
 import { products } from "@/lib/data";
 import { isVariableValid } from "@/lib/utils";
-import { type ChangeEvent, useMemo, useState } from "react";
+import { useMemo, useState, type ChangeEvent } from "react";
 
 const categoryList = products.reduce((acc: string[], product) => {
   product.categories.forEach((category) => {
@@ -45,7 +45,7 @@ const Food = () => {
               setCategories={setCategories}
             />
           </div>
-          {/*Search bar*/}
+          {/* Search bar */}
           <div className="flex w-full items-center py-2 dark:bg-background md:p-2">
             <Input
               className="px-4 py-2 text-gray-800 dark:text-white dark:placeholder-white"

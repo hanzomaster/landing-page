@@ -1,5 +1,5 @@
-"use client"
-import { ReactNode, RefObject } from "react";
+"use client";
+import { type ReactNode, type RefObject } from "react";
 
 export type ToastProps = {
   id: number;
@@ -7,6 +7,7 @@ export type ToastProps = {
   message?: ReactNode;
   duration?: number;
   position?: ToastPositionType;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   icon?: ReactNode | boolean;
 };
 

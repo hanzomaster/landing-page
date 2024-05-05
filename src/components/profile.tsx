@@ -1,3 +1,4 @@
+import { auth } from "@/lib/firebase/firebase";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -26,7 +27,13 @@ const Profile = () => {
         <Link href={"/auth/login"}>
           <DropdownMenuItem>Sign in</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>Log out</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            void auth.signOut();
+          }}
+        >
+          Log out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

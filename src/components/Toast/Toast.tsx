@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { ToastProps } from "./type";
+import { type ToastProps } from "./type";
 import { useToast } from "./useToast";
 import {
   animationVariables,
@@ -14,7 +14,13 @@ import {
 
 export const Toast = (props: ToastProps) => {
   // eslint-disable-next-line prefer-const
-  let { type = "info", icon = "", message = "---", id, duration = 3000 } = props;
+  let {
+    type = "info",
+    icon = "",
+    message = "---",
+    id,
+    duration = 3000,
+  } = props;
   icon = icon === "" ? getIcon(type) : icon;
   duration = typeof duration === "string" ? +duration : duration;
 
@@ -63,14 +69,15 @@ export const Toast = (props: ToastProps) => {
       className={clsx(
         wrapperClasses[type],
         "animate-toastIn",
-        "relative my-3 flex items-center justify-between overflow-hidden rounded-md shadow-lg"
+        "relative my-3 flex items-center justify-between overflow-hidden rounded-md shadow-lg",
       )}
       ref={wrapperRef}
-      role={"alert"}>
+      role={"alert"}
+    >
       {!!duration && (
-        <div className="absolute bottom-0 right-0 left-0 h-1 w-full bg-neutral-100 dark:bg-neutral-500">
+        <div className="absolute bottom-0 left-0 right-0 h-1 w-full bg-neutral-100 dark:bg-neutral-500">
           <span
-            className="absolute left-0 top-0 bottom-0 h-full bg-neutral-200"
+            className="absolute bottom-0 left-0 top-0 h-full bg-neutral-200"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -90,7 +97,8 @@ export const Toast = (props: ToastProps) => {
         onClick={() => {
           remove(id, wrapperRef);
         }}
-        className={closeButtonClasses}>
+        className={closeButtonClasses}
+      >
         <span className="sr-only">Close</span>
         {closeIcon}
       </button>

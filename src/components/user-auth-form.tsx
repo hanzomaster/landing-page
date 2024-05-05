@@ -3,101 +3,81 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn, isVariableValid } from "@/lib/utils";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type ChangeEvent, type HTMLAttributes } from "react";
+import { auth } from "@/lib/firebase/firebase";
+import { cn } from "@/lib/utils";
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState, type HTMLAttributes } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle } from "react-icons/fc";
 
 function UserAuthForm({
   className,
   ...props
 }: Readonly<HTMLAttributes<HTMLDivElement>>) {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  if (user) {
+    router.replace("/eateries");
+  }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isEmailSigningIn, setIsEmailSigningIn] = useState(false);
+  const [isGoogleSigningIn, setIsGoogleSigningIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isEmailSigningIn) {
+      setIsEmailSigningIn(true);
+      // await doSignInWithEmailAndPassword(email, password);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          router.replace("/eateries");
+        })
+        .catch((err) => {
+          switch (err.code) {
+            case "auth/email-already-in-use":
+              setErrorMessage("Email already in use");
+              break;
+            case "auth/weak-password":
+              setErrorMessage("Password is too weak");
+              break;
+            case "auth/invalid-email":
+              setErrorMessage("Invalid email");
+              break;
+            default:
+              setErrorMessage(err.message);
+              break;
+          }
+          setIsEmailSigningIn(false);
+        });
+    }
+  };
+  const onGoogleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isGoogleSigningIn) {
+      setIsGoogleSigningIn(true);
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then(() => {
+          router.replace("/eateries");
+        })
+        .catch((err) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          setErrorMessage(err.message as string);
+          setIsGoogleSigningIn(false);
+        });
+    }
+  };
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <TryComponents />
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      {/* TODO: Implement Google login with Firebase*/}
-      <Button
-        variant="secondary"
-        className="flex items-center justify-center gap-2"
-        onClick={() => console.log("Google login")}
-      >
-        <FcGoogle className="h-6 w-6" />
-        Continue with Google
-      </Button>
-    </div>
-  );
-}
-
-function TryComponents() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const method = searchParams.get("method");
-  const email = searchParams.get("email");
-  const phone = searchParams.get("phone");
-
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const params = new URLSearchParams(Array.from(searchParams.entries()));
-
-    params.set("email", event.target.value);
-    const search = params.toString();
-    const query = search ? `?${search}` : "";
-
-    router.replace(`${pathname}${query}`, {
-      scroll: false,
-    });
-  };
-
-  if (method === "phone")
-    return (
-      <>
-        <div className="grid gap-1">
-          <Label
-            className="text-sm font-light text-foreground/60"
-            htmlFor="email"
-          >
-            Phone
-          </Label>
-          <Input
-            id="phone"
-            placeholder="+989123456789"
-            type="phone"
-            autoCapitalize="none"
-            autoComplete="phone"
-            autoCorrect="off"
-            // disabled={isLoading}
-            // onChange={handlePhoneChange}
-            required
-          />
-          {isVariableValid(phone) && (
-            <p className="mt-2 text-sm text-red-700">
-              Phone Number is not valid.
-            </p>
-          )}
-        </div>
-        <Button
-          type={"button"}
-          // onClick={onSubmitPhone}
-          // disabled={isLoading || !isIranianPhoneNumberValid(phone)}
-        >
-          {/*{isLoading && <Loader className="mr-2 h-4 animate-spin" />}*/}
-          Login with Phone
-        </Button>
-      </>
-    );
-
-  return (
-    <>
       <div className="grid gap-1">
         <Label
           className="text-sm font-light text-foreground/60"
@@ -113,45 +93,58 @@ function TryComponents() {
           autoComplete="email"
           autoCorrect="off"
           // disabled={isLoading}
-          onChange={handleEmailChange}
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-      <Button
-      // onClick={onSubmitEmail}
-      // disabled={isLoading || !isEmailValid(email)}
-      >
-        {/*{isLoading && <Loader className="mr-2 h-4 animate-spin" />}*/}
-        Login with Email
-      </Button>
-    </>
-  );
-}
-function VerifyComponents() {
-  return (
-    <>
-      <div className="grid gap-1">
         <Label
           className="text-sm font-light text-foreground/60"
-          htmlFor="email"
+          htmlFor="password"
         >
-          One-Time Password
+          Password
         </Label>
         <Input
-          placeholder="12345"
+          id="password"
+          type="password"
+          autoCapitalize="none"
+          autoComplete="new-password"
+          autoCorrect="off"
           // disabled={isLoading}
-          // onChange={handleOTPChange}
           required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <Button
-      // onClick={onVerifyOTP}
-      // disabled={isLoading}
-      >
-        {/*{isLoading && <Loader className="mr-2 h-4 animate-spin" />}*/}
-        Submit
+      {errorMessage && (
+        <p className="text-center text-sm text-red-500">{errorMessage}</p>
+      )}
+      <Button onClick={onSubmit}>
+        {isEmailSigningIn && <Loader className="mr-2 h-4 animate-spin" />}
+        Login with Email
       </Button>
-    </>
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">
+            Or continue with
+          </span>
+        </div>
+      </div>
+      <Button
+        variant="secondary"
+        className="flex items-center justify-center gap-2"
+        onClick={(e) => onGoogleSignIn(e)}
+      >
+        {isGoogleSigningIn ? (
+          <Loader className="mr-2 h-4 animate-spin" />
+        ) : (
+          <FcGoogle className="h-6 w-6" />
+        )}
+        Continue with Google
+      </Button>
+    </div>
   );
 }
 

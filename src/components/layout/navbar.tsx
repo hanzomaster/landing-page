@@ -4,11 +4,14 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { settings } from "@/config/settings";
 import { siteConfig } from "@/config/site";
 import { navLinks } from "@/lib/data";
+import { auth } from "@/lib/firebase/firebase";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Profile from "../profile";
 
 function Navbar() {
+  const [user] = useAuthState(auth);
   const [navbar, setNavbar] = useState(false);
 
   const handleClick = async () => {
@@ -71,8 +74,9 @@ function Navbar() {
             </button>
             <div className=" mt-[0.125rem] flex gap-3">
               <ModeToggle />
-              <Profile />
-              <LoginButton />
+              {/* <Profile />
+                <LoginButton /> */}
+              {user ? <Profile /> : <LoginButton />}
             </div>
           </div>
         </div>
@@ -104,8 +108,9 @@ function Navbar() {
             </div>
           )}
           <div className={"hidden sm:flex sm:gap-4"}>
-            <Profile />
-            <LoginButton />
+            {/* <Profile />
+            <LoginButton /> */}
+            {user ? <Profile /> : <LoginButton />}
           </div>
         </div>
       </nav>

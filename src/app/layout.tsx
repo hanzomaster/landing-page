@@ -65,16 +65,14 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         {settings.themeToggleEnabled ? (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
-            <Toaster/>
+            <Toaster />
             {children}
             <Footer />
-          
           </ThemeProvider>
         ) : (
           <ThemeProvider attribute="class" forcedTheme="light" enableSystem>
-            
             <Navbar />
-            <Toaster/>
+            <Toaster />
             {children}
             <Footer />
           </ThemeProvider>

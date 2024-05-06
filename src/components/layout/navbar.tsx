@@ -85,7 +85,7 @@ function Navbar() {
           className={`absolute left-0 right-0 z-10 m-auto justify-self-center rounded-md border p-4 md:static md:block md:items-center md:border-none md:p-0 ${
             navbar ? "block bg-background" : "hidden"
           }`}
-          style={{ width: "100%", maxWidth: "20rem" }}
+          style={{ width: "100%", maxWidth: "30rem" }}
         >
           <ul className="flex flex-col items-center justify-between space-y-4 text-primary opacity-60 md:flex-row md:space-x-6 md:space-y-0">
             {navLinks.map((link) => (

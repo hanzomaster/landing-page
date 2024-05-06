@@ -30,9 +30,9 @@ export default function Footer() {
             href="https://redpangilinan.live/"
             className="hover:underline"
           >
-            Red Pangilinan
+            Tran Thinh
           </a>{" "}
-          . All Rights Reserved.
+          . UET-VNU.
         </span>
       </div>
     </footer>

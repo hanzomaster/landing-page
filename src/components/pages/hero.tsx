@@ -11,12 +11,13 @@ async function HeroHeader() {
           <h1 className="text-4xl font-bold lg:text-6xl">
             {heroHeader.header}
           </h1>
-          <h2 className="text-lg font-light text-muted-foreground lg:text-3xl">
+          <h1 className="text-4xl font-bold lg:text-8xl">hChip</h1>
+          <h2 className="text-lg font-medium lg:text-3xl text-gray-800">
             {heroHeader.subheader}
           </h2>
         </div>
-        <div className={`w-[10rem] ${cn(buttonVariants({ size: "lg" }))}`}>
-          Get started
+        <div className={`w-[12rem] h-16 rounded-full text-4xl hover:cursor-pointer ${cn(buttonVariants({ size: "lg" }))}`}>
+          Khám phá
         </div>
       </div>
       {/* {heroHeader.image !== "" ? (

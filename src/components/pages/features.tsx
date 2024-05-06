@@ -36,7 +36,7 @@ function Features() {
           })}
         </div>
         <div
-          className="md:border"
+          className=""
           style={{
             backgroundImage: `url(${features.image})`,
             backgroundRepeat: `no-repeat`,

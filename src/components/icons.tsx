@@ -39,7 +39,7 @@ const icons = {
   nextjs: () => {
     return (
       <Image
-        src={`${env.S3_URL}/download/1711646674800-next.svg`}
+        src={`/booking.png`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}
@@ -50,7 +50,7 @@ const icons = {
   shadcnUi: () => {
     return (
       <Image
-        src={`${env.S3_URL}/download/1711646696973-shadcn-ui.svg`}
+        src={`/restaurant.png`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}
@@ -61,7 +61,7 @@ const icons = {
   vercel: () => {
     return (
       <Image
-        src={`${env.S3_URL}/download/1711646714676-vercel.svg`}
+        src={`/revenue.png`}
         className="dark:brightness-0 dark:invert-[1]"
         width={100}
         height={100}

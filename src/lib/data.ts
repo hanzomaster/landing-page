@@ -2,19 +2,19 @@ import { type EateryType, type ProductType } from "@/types/product";
 
 export const navLinks = [
   {
-    route: "Home",
+    route: "Trang chủ",
     path: "/",
   },
   {
-    route: "Food",
+    route: "Món ăn",
     path: "/foods",
   },
   {
-    route: "Eateries",
+    route: "Quán ăn",
     path: "/eateries",
   },
   {
-    route: "Onboarding",
+    route: "Gia nhập",
     path: "/onboarding",
   },
 ];

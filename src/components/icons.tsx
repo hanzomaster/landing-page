@@ -1,4 +1,3 @@
-import { env } from "@/env";
 import Image from "next/image";
 import {
   AiOutlineClose,
@@ -36,7 +35,7 @@ const icons = {
   blank: () => {
     return <></>;
   },
-  nextjs: () => {
+  booking: () => {
     return (
       <Image
         src={`/booking.png`}
@@ -47,7 +46,7 @@ const icons = {
       />
     );
   },
-  shadcnUi: () => {
+  restaurant: () => {
     return (
       <Image
         src={`/restaurant.png`}
@@ -58,7 +57,7 @@ const icons = {
       />
     );
   },
-  vercel: () => {
+  revenue: () => {
     return (
       <Image
         src={`/revenue.png`}

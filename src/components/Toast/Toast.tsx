@@ -14,7 +14,7 @@ import {
 
 export const Toast = (props: ToastProps) => {
   // eslint-disable-next-line prefer-const
-  const {
+  let {
     type = "info",
     icon = "",
     message = "---",
